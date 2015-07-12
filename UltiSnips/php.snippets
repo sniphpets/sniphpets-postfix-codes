@@ -15,3 +15,7 @@ endsnippet
 snippet "(\S.*)\.ret" "return postfix code" br
 return `!p snip.rv = match.group(1)`;
 endsnippet
+
+snippet "(\S.*)\.echo" "echo postfix code" br
+echo `!p snip.rv = match.group(1)`;
+endsnippet
