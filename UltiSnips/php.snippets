@@ -1,0 +1,17 @@
+priority -40
+
+snippet "(\S.*)\.if" "if postfix code" br
+if (${1:/* condition */}) {
+	`!p snip.rv = match.group(1)`${0}
+}
+endsnippet
+
+snippet "(\S.*)\.ife" "if postfix code" br
+if (`!p snip.rv = match.group(1)`) {
+	${1}
+}
+endsnippet
+
+snippet "(\S.*).ret" "return postfix code" b
+return `!p snip.rv = match.group(1)`;
+endsnippet
