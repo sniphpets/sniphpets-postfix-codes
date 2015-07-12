@@ -2,13 +2,21 @@ priority -40
 
 snippet "(\S.*)\.if" "if postfix code" br
 if (${1:/* condition */}) {
-	`!p snip.rv = match.group(1)`${0}
+	`!p snip.rv = match.group(1)`;${0}
 }
 endsnippet
 
 snippet "(\S.*)\.ife" "if postfix code" br
 if (`!p snip.rv = match.group(1)`) {
-	${1}
+	${0}
+}
+endsnippet
+
+snippet "(\S.*)\.try" "try postfix code" br
+try {
+	`!p snip.rv = match.group(1)`;
+} catch (${1:\Exception} \$${2:e}) {
+	${0}
 }
 endsnippet
 
