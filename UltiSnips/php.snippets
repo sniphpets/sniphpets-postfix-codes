@@ -1,29 +1,101 @@
 priority -40
 
-snippet "(\S.*)\.if" "if postfix code" br
+snippet "(\S.*);p" "parenthesis postfix code" br
+${1}(`!p snip.rv = match.group(1)`)
+endsnippet
+
+snippet "(\S.*);if" "if postfix code" br
 if (${1:/* condition */}) {
-	`!p snip.rv = match.group(1)`;${0}
+	`!p snip.rv = match.group(1)`;${2}
 }
 endsnippet
 
-snippet "(\S.*)\.ife" "if postfix code" br
+snippet "(\S.*)\.if" "if postfix code" br
 if (`!p snip.rv = match.group(1)`) {
-	${0}
+	${1}
 }
 endsnippet
 
-snippet "(\S.*)\.try" "try postfix code" br
+snippet "(\S.*);for" "for postfix code" br
+for (${1}; ${2}; ${3}) {
+	`!p snip.rv = match.group(1)`;${4}
+}
+endsnippet
+
+snippet "(\S.*)\.for" "for postfix code" br
+for (`!p snip.rv = match.group(1)`; ${1}; ${2}) {
+	${3}
+}
+endsnippet
+
+snippet "(\S.*);foreach" "foreach postfix code" br
+foreach (\$${1:variable} as \$${2:value}) {
+	`!p snip.rv = match.group(1)`;${3}
+}
+endsnippet
+
+snippet "(\S.*)\.foreach" "foreach postfix code" br
+foreach (`!p snip.rv = match.group(1)` as \$${1:value}) {
+	${1}
+}
+endsnippet
+
+snippet "(\S.*);foreachk" "foreach key/value postfix code" br
+foreach (\$${1:variable} as \$${2:key} => \$${3:value}) {
+	`!p snip.rv = match.group(1)`;${4}
+}
+endsnippet
+
+snippet "(\S.*)\.foreachk" "foreach key/value postfix code" br
+foreach (`!p snip.rv = match.group(1)` as \$${1:key} => \$${2:value}) {
+	${3}
+}
+endsnippet
+
+snippet "(\S.*);while" "while postfix code" br
+while (${1:/* condition */}) {
+	`!p snip.rv = match.group(1)`;${2}
+}
+endsnippet
+
+snippet "(\S.*)\.while" "while postfix code" br
+while (`!p snip.rv = match.group(1)`) {
+	${1}
+}
+endsnippet
+
+snippet "(\S.*);do" "do/while postfix code" br
+do {
+	`!p snip.rv = match.group(1)`;${2}
+} while (${1:/* condition */});
+endsnippet
+
+snippet "(\S.*)\.do" "do/while postfix code" br
+do {
+	${1}
+} while (`!p snip.rv = match.group(1)`);
+endsnippet
+
+snippet "(\S.*);try" "try/catch postfix code" br
 try {
 	`!p snip.rv = match.group(1)`;
 } catch (${1:\Exception} \$${2:e}) {
-	${0}
+	${3}
 }
 endsnippet
 
-snippet "(\S.*)\.ret" "return postfix code" br
+snippet "(\S.*);ret" "return postfix code" br
 return `!p snip.rv = match.group(1)`;
 endsnippet
 
-snippet "(\S.*)\.echo" "echo postfix code" br
+snippet "(\S.*);echo" "echo postfix code" br
 echo `!p snip.rv = match.group(1)`;
+endsnippet
+
+snippet "(\S.*);dump" "var_dump postfix code" br
+var_dump(`!p snip.rv = match.group(1)`);
+endsnippet
+
+snippet "(\S.*);die" "die postfix code" br
+die(`!p snip.rv = match.group(1)`);
 endsnippet
